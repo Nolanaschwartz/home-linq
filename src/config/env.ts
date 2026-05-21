@@ -13,7 +13,7 @@ const EnvSchema = z.object({
   OPENAI_API_KEY: z.string().min(1),
   OPENAI_MODEL: z.string().default('gpt-4o'),
   OPENAI_BASE_URL: z.string().url().optional(),
-  AGENT_TIMEOUT_MS: z.coerce.number().int().positive().default(60000),
+  AGENT_TIMEOUT_MS: z.coerce.number().int().positive().default(90000),
 
   ALLOWED_SENDERS: z
     .string()
