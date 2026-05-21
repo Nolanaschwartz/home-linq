@@ -59,7 +59,7 @@ export class DockhandService implements OnApplicationBootstrap {
         Authorization: `Bearer ${this.config.get<string>('DOCKHAND_TOKEN')}`,
         'Content-Type': 'application/json',
       },
-      validateStatus: (s) => s >= 200 && s < 500,
+      validateStatus: (s) => s >= 200 && s < 600,
     };
   }
 
