@@ -1,14 +1,57 @@
 {
-  "name": "${PROJECT_NAME}",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
+  "name": "home-linq",
+  "version": "0.1.0",
+  "description": "NestJS bridge: Linq SMS/iMessage → OpenAI agent → Dockhand Docker management",
+  "private": true,
+  "main": "dist/main.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"*.{json,md}\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "test": "jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@ai-sdk/openai": "^1.0.0",
+    "@linqapp/sdk": "^0.25.0",
+    "@nestjs/axios": "^3.1.0",
+    "@nestjs/common": "^10.4.0",
+    "@nestjs/config": "^3.3.0",
+    "@nestjs/core": "^10.4.0",
+    "@nestjs/platform-express": "^10.4.0",
+    "@prisma/client": "^5.22.0",
+    "ai": "^4.0.0",
+    "axios": "^1.7.7",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "zod": "^3.23.8"
+  },
   "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.4",
+    "@typescript-eslint/parser": "^8.59.4",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
+    "jest": "^30.4.2",
+    "prettier": "^3.8.3",
+    "prisma": "^5.22.0",
+    "ts-jest": "^29.4.11",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.3"
   },
-  "private": true
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@prisma/client",
+      "@prisma/engines",
+      "prisma"
+    ]
+  }
 }

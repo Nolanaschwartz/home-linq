@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Chat {
+  id          String    @id
+  participant String
+  createdAt   DateTime  @default(now())
+  messages    Message[]
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  chatId    String
+  role      String
+  content   String
+  createdAt DateTime @default(now())
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  @@index([chatId, createdAt])
+}
+
+model ProcessedEvent {
+  eventId   String   @id
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model PendingClear {
+  confirmationMessageId String   @id
+  chatId                String   @unique
+  createdAt             DateTime @default(now())
+}
